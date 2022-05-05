@@ -1,5 +1,7 @@
+import {TestDiv} from './App.styled';
+
 function App() {
-    return <div className="Name">Lorem ipsum dolor sit amet.</div>;
+  return <TestDiv>Lorem ipsum dolor sit amet.</TestDiv>;
 }
 
 export default App;
