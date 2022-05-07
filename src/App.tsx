@@ -1,4 +1,4 @@
-import {TestDiv} from './App.styled';
+import { TestDiv } from './App.styled';
 
 function App() {
   return <TestDiv>Lorem ipsum dolor sit amet.</TestDiv>;
