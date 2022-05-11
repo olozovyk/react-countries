@@ -1,14 +1,16 @@
-import { useGetAllCountriesQuery } from './redux/countriesAPI/countriesAPI';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from 'components/Layout/Layout';
+import { Home } from 'pages/Home';
 
 function App() {
-  const { data = [] } = useGetAllCountriesQuery();
-
   return (
-    <ul>
-      {data.map(country => (
-        <li key={country.name.common}>{country.name.common}</li>
-      ))}
-    </ul>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="detail/:country" element={<div>Country</div>} />
+        <Route path="*" element={<div>404</div>} />
+      </Route>
+    </Routes>
   );
 }
 
