@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ICountry } from 'types/ICountry';
 
 /*
   "name": {
@@ -11,18 +12,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
       "png": "https://.../"
   }
 */
-
-interface ICountry {
-  name: {
-    common: string;
-  };
-  population: number;
-  region: string;
-  capital: string[];
-  flags: {
-    png: string;
-  };
-}
 
 export const countriesAPI = createApi({
   reducerPath: 'countriesAPI',

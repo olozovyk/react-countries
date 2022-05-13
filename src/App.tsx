@@ -7,6 +7,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        {/*<Route path="regions/:region" element={<Regions />} />*/}
         <Route path="detail/:country" element={<div>Country</div>} />
         <Route path="*" element={<div>404</div>} />
       </Route>
