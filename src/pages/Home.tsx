@@ -1,52 +1,51 @@
 import { FindBar } from 'components/FindBar/FindBar';
 import { CountriesList } from 'components/CountriesList/CountriesList';
-import { useEffect, useState } from 'react';
-import { useGetAllCountriesQuery } from '../redux/countriesAPI/countriesAPI';
-import { ICountry } from '../types/ICountry';
+import React, { useEffect, useRef, useState } from 'react';
+import { useGetAllCountriesQuery } from 'redux/countriesAPI/countriesAPI';
 
 export const Home = () => {
   const { data = [] } = useGetAllCountriesQuery();
-  const [countries, setCountries] = useState<ICountry[]>([]);
+  const [countriesToShow, setCountriesToShow] = useState(0);
+  const COUNTRIES_TO_SHOW = 12;
 
-  // set initial quantity of countries for render:
-  const COUNTRIES_TO_SHOW = 24;
   useEffect(() => {
-    if (!data.length) {
-      return;
-    }
-    if (data.length > COUNTRIES_TO_SHOW) {
-      setCountries(data.slice(0, COUNTRIES_TO_SHOW));
-    } else {
-      setCountries(data.slice(0, data.length));
-    }
-  }, [data]);
+    setCountriesToShow(COUNTRIES_TO_SHOW);
+  }, []);
 
-  // handler for intersection observer:
-  const showMoreCountries = () => {
-    if (data.length <= countries.length) {
+  const addCountriesToShow = () => {
+    setCountriesToShow(state => state + COUNTRIES_TO_SHOW);
+  };
+
+  const listItemRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    if (!data.length || countriesToShow >= data.length) {
       return;
     }
-    const diff = data.length - countries.length;
-    if (diff > COUNTRIES_TO_SHOW) {
-      console.log(222);
-      setCountries(countries =>
-        countries.concat(
-          data.slice(countries.length, countries.length + COUNTRIES_TO_SHOW),
-        ),
-      );
-    } else {
-      console.log(333);
-      setCountries(countries => countries.concat(data.slice(countries.length)));
-    }
-  };
+
+    const listObserver = new IntersectionObserver(
+      (entries, observer) => {
+        if (entries[entries.length - 1].isIntersecting) {
+          observer.unobserve(listItemRef.current as HTMLLIElement);
+          addCountriesToShow();
+        }
+      },
+      {
+        threshold: 1,
+      },
+    );
+
+    listObserver.observe(listItemRef.current as HTMLLIElement);
+  }, [countriesToShow, data]);
 
   return (
     <main>
       <FindBar />
-      <button onClick={showMoreCountries} type="button">
-        Load more
-      </button>
-      <CountriesList data={countries} />
+      <button type="button">Load more</button>
+      <CountriesList
+        data={data.slice(0, countriesToShow - 1)}
+        listItemRef={listItemRef}
+      />
     </main>
   );
 };

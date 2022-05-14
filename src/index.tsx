@@ -20,15 +20,13 @@ const root = ReactDOM.createRoot(
 const theme = light;
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <ThemeProvider theme={vars}>
-            <App />
-          </ThemeProvider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <ThemeProvider theme={vars}>
+          <App />
         </ThemeProvider>
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+      </ThemeProvider>
+    </Provider>
+  </BrowserRouter>,
 );

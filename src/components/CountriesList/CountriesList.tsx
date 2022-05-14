@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { ICountry } from 'types/ICountry';
 
 interface IProps {
   data: ICountry[];
+  listItemRef: RefObject<HTMLLIElement>;
 }
 
-export const CountriesList: React.FC<IProps> = ({ data = [] }) => {
+export const CountriesList: React.FC<IProps> = ({ data = [], listItemRef }) => {
   return (
     <ul
       style={{
@@ -16,8 +17,13 @@ export const CountriesList: React.FC<IProps> = ({ data = [] }) => {
       }}
     >
       {data.map(country => (
-        <li key={country.name.common}>
-          <img src={country.flags.png} alt="" loading="lazy" />
+        <li key={country.name.common} ref={listItemRef}>
+          <img
+            style={{ height: '200px', width: '300px' }}
+            src={country.flags.png}
+            alt=""
+            loading="lazy"
+          />
         </li>
       ))}
     </ul>
