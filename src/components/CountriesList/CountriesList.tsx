@@ -7,6 +7,7 @@ interface IProps {
 }
 
 export const CountriesList: React.FC<IProps> = ({ data = [], listItemRef }) => {
+  console.log(listItemRef);
   return (
     <ul
       style={{
