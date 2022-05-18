@@ -5,10 +5,10 @@ import { useGetAllCountriesQuery } from 'redux/countriesAPI/countriesAPI';
 import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 
 export const Home = () => {
-  const { data = [] } = useGetAllCountriesQuery();
-  const liElement = useRef<HTMLLIElement>(null);
+  const { data } = useGetAllCountriesQuery();
+  const refLiElement = useRef<HTMLLIElement>(null);
 
-  const countries = useInfiniteScroll(data, 12, liElement) || 12;
+  const countries = useInfiniteScroll(data, 12, refLiElement) || [];
   // const [numberToShow, setNumberToShow] = useState(0);
   // const NUMBER_TO_SHOW = 12;
   //
@@ -46,10 +46,7 @@ export const Home = () => {
     <main>
       <FindBar />
       <button type="button">Load more</button>
-      <CountriesList
-        data={countries ? countries : data.slice(0, 12)}
-        listItemRef={liElement}
-      />
+      <CountriesList data={countries} refLiElement={refLiElement} />
     </main>
   );
 };

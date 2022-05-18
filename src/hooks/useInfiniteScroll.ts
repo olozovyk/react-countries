@@ -1,40 +1,31 @@
-import { RefObject, useCallback, useEffect, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 import { ICountry } from '../types/ICountry';
 
 export const useInfiniteScroll = (
-  data: ICountry[],
+  data: ICountry[] | undefined,
   numberCountriesToRender: number,
   refLiElement: RefObject<HTMLLIElement>,
 ): ICountry[] => {
-  const [numberToShow, setNumberToShow] = useState(0);
-  const [countries, setCountries] = useState<ICountry[]>(
-    data.slice(0, numberToShow),
-  );
+  const [countries, setCountries] = useState<ICountry[]>([]);
+  const [numberToShow, setNumberToShow] = useState(numberCountriesToRender);
 
   useEffect(() => {
-    setNumberToShow(numberCountriesToRender);
-  }, [numberCountriesToRender]);
-
-  const addCountriesToShow = useCallback(() => {
-    setNumberToShow(state => state + numberCountriesToRender);
-  }, [numberCountriesToRender]);
-
-  useEffect(() => {
-    setCountries(data.slice(0, numberCountriesToRender - 1));
-  }, [data.length, numberCountriesToRender]);
-
-  useEffect(() => {
-    if (!data.length || numberToShow >= data.length) {
+    if (!data) {
       return;
     }
+    setCountries(data.slice(0, numberToShow));
+  }, [data, numberToShow]);
 
-    console.log('It works');
+  useEffect(() => {
+    if (!countries.length || (data && data.length - countries.length < 1)) {
+      return;
+    }
 
     const listObserver = new IntersectionObserver(
       (entries, observer) => {
         if (entries[entries.length - 1].isIntersecting) {
           observer.unobserve(refLiElement.current as HTMLLIElement);
-          addCountriesToShow();
+          setNumberToShow(state => state + numberCountriesToRender);
         }
       },
       {
@@ -43,12 +34,7 @@ export const useInfiniteScroll = (
     );
 
     listObserver.observe(refLiElement.current as HTMLLIElement);
-  }, [numberToShow, data, addCountriesToShow, refLiElement]);
+  }, [data, refLiElement, countries, numberCountriesToRender]);
 
-  console.log(countries);
   return countries;
-
-  //  receive original data array, numbers of rendered countries,
-  //  return array countries for render, ref?
-  //  ADD real ref to hook and return only array of countries
 };
