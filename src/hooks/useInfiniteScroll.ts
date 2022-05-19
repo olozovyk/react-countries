@@ -9,6 +9,8 @@ export const useInfiniteScroll = (
   const [countries, setCountries] = useState<ICountry[]>([]);
   const [numberToShow, setNumberToShow] = useState(numberCountriesToRender);
 
+  // If there are countries in data and data changed, it updates countries array in order to
+  // send it to component:
   useEffect(() => {
     if (!data) {
       return;
@@ -16,6 +18,8 @@ export const useInfiniteScroll = (
     setCountries(data.slice(0, numberToShow));
   }, [data, numberToShow]);
 
+  // If first countries rendered, it creates instance of intersection observer, hang it
+  // on the last item of the list:
   useEffect(() => {
     if (!countries.length || (data && data.length - countries.length < 1)) {
       return;
