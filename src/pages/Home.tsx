@@ -9,6 +9,10 @@ export const Home = () => {
   const refLiElement = useRef<HTMLLIElement>(null);
   const countries = useInfiniteScroll(data, 12, refLiElement) || [];
 
+  // Get region parameter
+  // If !region -> navigate to 404
+  // select default corresponding region
+
   return (
     <main>
       <FindBar />
