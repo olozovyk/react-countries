@@ -1,8 +1,11 @@
 import regions from 'regions.json';
-import { ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Select } from '../Select/Select';
-import { Option } from '../Select/Option/Option';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { SelectMui } from '../SelectMui/SelectMui';
+import { ThemeProvider } from '@mui/material';
+import { themeMui } from '../../theme';
+// import { Select } from '../Select/Select';
+// import { Option } from '../Select/Option/Option';
 
 export const FindBar = () => {
   const navigate = useNavigate();
@@ -13,14 +16,35 @@ export const FindBar = () => {
     }
   };
 
+  const [activeRegion, setActiveRegion] = useState('');
+  const { region } = useParams();
+
+  useEffect(() => {
+    if (!region) {
+      return;
+    }
+    const regionCapitalize = region.replace(region[0], region[0].toUpperCase());
+
+    if (!regions.includes(regionCapitalize)) {
+      navigate('/not-found');
+      return;
+    }
+    setActiveRegion(regionCapitalize);
+  }, [navigate, region]);
+
   return (
     <div>
       <input type="text" />
-      <Select onSelect={selectHandler}>
-        {regions.map(region => (
-          <Option key={region}>{region}</Option>
-        ))}
-      </Select>
+      <ThemeProvider theme={themeMui}>
+        <SelectMui />
+      </ThemeProvider>
+      {/*<Select onSelect={selectHandler}>*/}
+      {/*  {regions.map(region => (*/}
+      {/*    <Option key={region} selected={region === activeRegion}>*/}
+      {/*      {region}*/}
+      {/*    </Option>*/}
+      {/*  ))}*/}
+      {/*</Select>*/}
     </div>
   );
 };

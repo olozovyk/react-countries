@@ -1,5 +1,4 @@
 import React, { RefObject } from 'react';
-import { ICountry } from 'types/ICountry';
 
 interface IProps {
   data: ICountry[];

@@ -1,9 +1,17 @@
 import styled from '@emotion/styled';
 
 export const TestDiv = styled.div`
-  color: ${props => props.theme.textColor};
+  color: ${({ theme: { palette } }) => palette.elementsColor};
+  background-color: green;
 
-  @media (min-width: ${props => props.theme.breakpoints.desktop}) {
-    background-color: ${props => props.theme.backgroundColor};
+  @media (min-width: ${({ theme: { breakpoints } }) => breakpoints.desktop}) {
+    background-color: ${({ theme: { palette } }) => palette.backgroundColor};
   }
 `;
+
+// export const CustomButton = styledMui(Button)(
+//   () => `
+//   color: ${light.palette.inputColor};
+//   background-color: rgb(255, 255, 0)
+// `,
+// ) as typeof Button;

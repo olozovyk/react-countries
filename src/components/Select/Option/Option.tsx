@@ -1,5 +1,14 @@
 import React from 'react';
 
-export const Option = ({ children }: { children: string }) => {
-  return <option value={children}>{children}</option>;
+interface IProps {
+  children: string;
+  selected: boolean;
+}
+
+export const Option = ({ children, selected }: IProps) => {
+  return (
+    <option value={children} selected={selected}>
+      {children}
+    </option>
+  );
 };
