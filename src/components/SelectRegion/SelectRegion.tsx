@@ -11,8 +11,8 @@ export const SelectRegion = () => {
   const [selectRegion, setSelectRegion] = useState<string>('Filter by Region');
   const [showReset, setShowReset] = useState<boolean>(false);
   const open = Boolean(anchorEl);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const SelectRegion = () => {
 
     setSelectRegion(regionCapitalize);
     setShowReset(true);
-  }, []);
+  }, [navigate, params.region]);
 
   const handleSelectClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);

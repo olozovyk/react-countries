@@ -19,7 +19,11 @@ export const countriesAPI = createApi({
     getAllCountries: builder.query<ICountry[], void>({
       query: () => '/all',
     }),
+    getCountriesByRegion: builder.query<ICountry[], string>({
+      query: region => `/region/${region}`,
+    }),
   }),
 });
 
-export const { useGetAllCountriesQuery } = countriesAPI;
+export const { useGetAllCountriesQuery, useGetCountriesByRegionQuery } =
+  countriesAPI;
