@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import { store } from 'redux/store';
 import App from 'App';
-import { themeMui, light } from './theme';
+import { light } from './theme';
 
 import '../node_modules/modern-normalize/modern-normalize.css';
 import 'index.css';

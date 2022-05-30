@@ -17,10 +17,22 @@ export const useInfiniteScroll = (
     setCountries(data.slice(0, numberToShow));
   }, [data, numberToShow]);
 
+  // If data changed sets initial numberToShow
+  useEffect(() => {
+    setNumberToShow(numberCountriesToRender);
+    // Countries array must be set in above useEffect. To do refactoring this hook!
+    setCountries(state => state.slice(0, numberCountriesToRender));
+  }, [data, numberCountriesToRender]);
+
   // If first countries rendered, it creates instance of intersection observer, hang it
   // on the last item of the list:
   useEffect(() => {
-    if (!countries.length || (data && data.length - countries.length < 1)) {
+    if (
+      !countries.length ||
+      (data && data.length - countries.length < 1) ||
+      countries.length !== numberToShow ||
+      !refLiElement.current
+    ) {
       return;
     }
 
@@ -35,9 +47,14 @@ export const useInfiniteScroll = (
         threshold: 0.1,
       },
     );
-
     listObserver.observe(refLiElement.current as HTMLLIElement);
-  }, [data, refLiElement, countries, numberCountriesToRender]);
+  }, [
+    data,
+    refLiElement,
+    countries.length,
+    numberCountriesToRender,
+    numberToShow,
+  ]);
 
   return countries;
 };
