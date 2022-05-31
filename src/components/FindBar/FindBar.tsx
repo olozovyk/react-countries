@@ -2,10 +2,14 @@ import { ThemeProvider } from '@mui/material';
 import { SelectRegion } from '../SelectRegion/SelectRegion';
 import { themeMui } from '../../theme';
 
-export const FindBar = () => {
+interface IProps {
+  searchChangeHandler(e: React.ChangeEvent): void;
+}
+
+export const FindBar: React.FC<IProps> = ({ searchChangeHandler }) => {
   return (
     <div>
-      <input type="text" />
+      <input onChange={searchChangeHandler} type="text" />
       <ThemeProvider theme={themeMui}>
         <SelectRegion />
       </ThemeProvider>
