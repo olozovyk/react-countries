@@ -1,4 +1,5 @@
 import React, { RefObject } from 'react';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   data: ICountry[];
@@ -15,11 +16,13 @@ export const CountriesList: React.FC<IProps> = ({
         <li key={country.name.common} ref={refLiElement}>
           {/*Add Link into Li from react-router-dom*/}
           <div>
-            <img
-              src={country.flags.png}
-              alt={`Flag of ${country.name.common}`}
-              loading="lazy"
-            />
+            <Link to={`/detail/${country.name.common.toLowerCase()}`}>
+              <img
+                src={country.flags.png}
+                alt={`Flag of ${country.name.common}`}
+                loading="lazy"
+              />
+            </Link>
           </div>
           <h2>{country.name.common}</h2>
           <p>
