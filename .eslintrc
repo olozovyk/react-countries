@@ -4,7 +4,6 @@
     "prefer-const": "warn",
     "quotes": ["warn", "single", { "allowTemplateLiterals": true }],
     "jsx-quotes": ["warn", "prefer-double"],
-    "indent": ["warn", 2],
     "comma-dangle": ["warn", "always-multiline"],
     "semi": "warn",
     "import/order": [

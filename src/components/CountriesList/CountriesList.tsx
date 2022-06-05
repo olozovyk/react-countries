@@ -16,7 +16,7 @@ export const CountriesList: React.FC<IProps> = ({
         <li key={country.name.common} ref={refLiElement}>
           {/*Add Link into Li from react-router-dom*/}
           <div>
-            <Link to={`/detail/${country.name.common.toLowerCase()}`}>
+            <Link to={`/countries/${country.name.common.toLowerCase()}`}>
               <img
                 src={country.flags.png}
                 alt={`Flag of ${country.name.common}`}
