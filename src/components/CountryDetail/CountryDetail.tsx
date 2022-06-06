@@ -40,21 +40,27 @@ export const CountryDetail = () => {
       population,
       region,
       subregion,
-      languages,
       capital,
       tld,
       currencies,
     } = data[0];
 
-    const nativeName: string = Object.keys(name.nativeName)
-      .map((lang, idx, arr) => {
-        if (arr.length > 1) {
-          return `${name.nativeName[lang].common} (${languages[lang]})`;
-        } else {
-          return name.nativeName[lang].common;
-        }
-      })
-      .join(', ');
+    const getNativeNames = (): string => {
+      if (!name.nativeName) {
+        return '';
+      }
+      const keys: string[] = Object.keys(name.nativeName);
+      return keys
+        .map(lang => {
+          if (name.nativeName![lang].common) {
+            return name.nativeName![lang].common;
+          } else {
+            return undefined;
+          }
+        })
+        .filter(name => name !== undefined)
+        .join(', ');
+    };
 
     const capitalToShow = capital ? capital.join(', ') : '';
     const domain = tld ? tld.join(', ') : '';
@@ -71,8 +77,11 @@ export const CountryDetail = () => {
       ...state,
       name: name.common,
       flag: flags.png,
-      nativeName: nativeName ? nativeName : '-',
-      population: !isNaN(population) ? population.toLocaleString('us') : '-',
+      nativeName: getNativeNames(),
+      population: !isNaN(population)
+        ? //  change to helper:
+          population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        : '-',
       region,
       subregion: subregion ? subregion : '-',
       capital: capitalToShow ? capitalToShow : '-',

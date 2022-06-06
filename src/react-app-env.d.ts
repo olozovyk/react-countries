@@ -2,9 +2,9 @@
 interface ICountry {
   name: {
     common: string;
-    nativeName: {
+    nativeName?: {
       [key: string]: {
-        common: string;
+        common?: string;
       };
     };
   };
