@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetDetailCountryQuery } from 'redux/countriesAPI/countriesAPI';
+import { populationNormalize } from '../../helpers/populationNormalize';
 
 interface ICountryDetail {
   name: string;
@@ -12,6 +13,7 @@ interface ICountryDetail {
   capital: string;
   domain: string;
   currencies: string;
+  languages: string;
 }
 
 export const CountryDetail = () => {
@@ -30,7 +32,7 @@ export const CountryDetail = () => {
 
   // Formatting country data
   useEffect(() => {
-    if (!data) {
+    if (!data || !data[0].name.common) {
       return;
     }
 
@@ -43,11 +45,12 @@ export const CountryDetail = () => {
       capital,
       tld,
       currencies,
+      languages,
     } = data[0];
 
     const getNativeNames = (): string => {
       if (!name.nativeName) {
-        return '';
+        return 'No data';
       }
       const keys: string[] = Object.keys(name.nativeName);
       return keys
@@ -62,8 +65,13 @@ export const CountryDetail = () => {
         .join(', ');
     };
 
-    const capitalToShow = capital ? capital.join(', ') : '';
-    const domain = tld ? tld.join(', ') : '';
+    const populationToShow = population
+      ? populationNormalize(population)
+      : 'No data';
+    const regionToShow = region ? region : 'No data';
+    const subregionToShow = subregion ? subregion : 'No data';
+    const capitalToShow = capital ? capital.join(', ') : 'No data';
+    const domainToShow = tld ? tld.join(', ') : 'No data';
 
     const currenciesToShow: string = currencies
       ? Object.keys(currencies)
@@ -71,22 +79,28 @@ export const CountryDetail = () => {
             return currencies[item].name;
           })
           .join(', ')
-      : '-';
+      : 'No data';
+
+    const languagesToShow: string = languages
+      ? Object.keys(languages)
+          .map(lang => {
+            return languages[lang];
+          })
+          .join(', ')
+      : 'No data';
 
     setCountry(state => ({
       ...state,
-      name: name.common,
       flag: flags.png,
+      name: name.common,
       nativeName: getNativeNames(),
-      population: !isNaN(population)
-        ? //  change to helper:
-          population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        : '-',
-      region,
-      subregion: subregion ? subregion : '-',
-      capital: capitalToShow ? capitalToShow : '-',
-      domain: domain ? domain : '-',
+      population: populationToShow,
+      region: regionToShow,
+      subregion: subregionToShow,
+      capital: capitalToShow,
+      domain: domainToShow,
       currencies: currenciesToShow,
+      languages: languagesToShow,
     }));
   }, [data]);
 
@@ -123,6 +137,10 @@ export const CountryDetail = () => {
           <p>
             <span>Currencies: </span>
             <span>{country.currencies}</span>
+          </p>
+          <p>
+            <span>Languages: </span>
+            <span>{country.languages}</span>
           </p>
         </div>
       )}

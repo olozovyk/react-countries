@@ -32,14 +32,15 @@ export const Main = () => {
     if (params.region) {
       setRegion(params.region);
       setSkip(false);
+      // isSuccess and isLoading added in order to prevent middle flashed renders
       if (countriesByRegion && isSuccess && !isLoading) {
-        setCountries(countriesByRegion);
+        setCountries(countriesByRegion.filter(country => country.name.common));
       }
     } else {
       setRegion('');
       setSkip(true);
       if (allCountries) {
-        setCountries(allCountries);
+        setCountries(allCountries.filter(country => country.name.common));
       }
     }
   }, [allCountries, countriesByRegion, isLoading, isSuccess, params.region]);

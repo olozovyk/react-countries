@@ -1,5 +1,8 @@
 /// <reference types="react-scripts" />
 interface ICountry {
+  flags: {
+    png: string;
+  };
   name: {
     common: string;
     nativeName?: {
@@ -8,23 +11,20 @@ interface ICountry {
       };
     };
   };
-  tld: string[];
-  currencies:
+  population?: number;
+  region?: string;
+  subregion?: string;
+  capital?: string[];
+  tld?: string[];
+  currencies?:
     | {
         [key: string]: {
           name: string;
         };
       }
     | undefined;
-  capital: string[];
-  region: string;
-  subregion: string;
   languages: {
     [key: string]: string;
-  };
-  population: number;
-  flags: {
-    png: string;
   };
 }
 
