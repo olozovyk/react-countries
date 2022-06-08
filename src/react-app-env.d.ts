@@ -26,6 +26,7 @@ interface ICountry {
   languages: {
     [key: string]: string;
   };
+  borders: string[];
 }
 
 /*

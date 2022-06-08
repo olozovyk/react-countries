@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetDetailCountryQuery } from 'redux/countriesAPI/countriesAPI';
+import { useGetCountryByNameQuery } from 'redux/countriesAPI/countriesAPI';
+import { BorderCountries } from 'components/BorderCounties/BorderCounties';
 import { populationNormalize } from '../../helpers/populationNormalize';
 
 interface ICountryDetail {
@@ -14,6 +15,7 @@ interface ICountryDetail {
   domain: string;
   currencies: string;
   languages: string;
+  borders: string[];
 }
 
 export const CountryDetail = () => {
@@ -21,7 +23,7 @@ export const CountryDetail = () => {
   const navigate = useNavigate();
   const [country, setCountry] = useState<ICountryDetail>();
 
-  const { data, isError } = useGetDetailCountryQuery(params.country || '');
+  const { data, isError } = useGetCountryByNameQuery(params.country || '');
 
   // Navigate to 404 if country is not found
   useEffect(() => {
@@ -46,11 +48,12 @@ export const CountryDetail = () => {
       tld,
       currencies,
       languages,
+      borders,
     } = data[0];
 
     const getNativeNames = (): string => {
       if (!name.nativeName) {
-        return 'No data';
+        return '-';
       }
       const keys: string[] = Object.keys(name.nativeName);
       return keys
@@ -65,13 +68,11 @@ export const CountryDetail = () => {
         .join(', ');
     };
 
-    const populationToShow = population
-      ? populationNormalize(population)
-      : 'No data';
-    const regionToShow = region ? region : 'No data';
-    const subregionToShow = subregion ? subregion : 'No data';
-    const capitalToShow = capital ? capital.join(', ') : 'No data';
-    const domainToShow = tld ? tld.join(', ') : 'No data';
+    const populationToShow = population ? populationNormalize(population) : '-';
+    const regionToShow = region ? region : '-';
+    const subregionToShow = subregion ? subregion : '-';
+    const capitalToShow = capital ? capital.join(', ') : '-';
+    const domainToShow = tld ? tld.join(', ') : '-';
 
     const currenciesToShow: string = currencies
       ? Object.keys(currencies)
@@ -79,7 +80,7 @@ export const CountryDetail = () => {
             return currencies[item].name;
           })
           .join(', ')
-      : 'No data';
+      : '-';
 
     const languagesToShow: string = languages
       ? Object.keys(languages)
@@ -87,7 +88,7 @@ export const CountryDetail = () => {
             return languages[lang];
           })
           .join(', ')
-      : 'No data';
+      : '-';
 
     setCountry(state => ({
       ...state,
@@ -101,6 +102,7 @@ export const CountryDetail = () => {
       domain: domainToShow,
       currencies: currenciesToShow,
       languages: languagesToShow,
+      borders,
     }));
   }, [data]);
 
@@ -142,6 +144,10 @@ export const CountryDetail = () => {
             <span>Languages: </span>
             <span>{country.languages}</span>
           </p>
+          <div>
+            <span>Border Countries:</span>
+            <BorderCountries borders={country.borders} />
+          </div>
         </div>
       )}
     </>
