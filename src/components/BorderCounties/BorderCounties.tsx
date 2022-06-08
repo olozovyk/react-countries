@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useGetCountriesByCodesQuery } from '../../redux/countriesAPI/countriesAPI';
 import { useNavigate } from 'react-router-dom';
+import { useGetCountriesByCodesQuery } from '../../redux/countriesAPI/countriesAPI';
 
 export const BorderCountries = ({ borders = [] }: { borders: string[] }) => {
   const [counties, setCountries] = useState<string[]>([]);
