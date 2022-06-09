@@ -1,9 +1,10 @@
 import { CountryDetail } from 'components/CountryDetail/CountryDetail';
+import { ButtonBack } from 'components/ButtonBack/ButtonBack';
 
 export const Detail = () => {
   return (
     <main>
-      <button type="button">Back</button>
+      <ButtonBack />
       <CountryDetail />
     </main>
   );
