@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetCountryByNameQuery } from 'redux/countriesAPI/countriesAPI';
-import { BorderCountries } from 'components/BorderCounties/BorderCounties';
+import { BorderCountries } from 'components/BorderCountries/BorderCountries';
 import { populationNormalize } from '../../helpers/populationNormalize';
 
 interface ICountryDetail {

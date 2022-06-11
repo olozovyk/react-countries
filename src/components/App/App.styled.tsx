@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
-export const TestDiv = styled.div`
-  color: ${({ theme }) => theme.palette.elementsColor};
+export const AppStyled = styled.div`
+  color: ${({ theme }) => theme.palette.textColor};
   background-color: ${({ theme }) => theme.palette.backgroundColor};
+  font-family: 'Nunito Sans', sans-serif;
 `;
 
 // export const CustomButton = styledMui(Button)(
