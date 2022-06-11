@@ -4,14 +4,21 @@ import { SvgIconComponent } from '@mui/icons-material';
 interface Props {
   label: string;
   onClickHandler(): void;
-  Icon?: SvgIconComponent;
+  IconLeft?: SvgIconComponent;
+  IconRight?: SvgIconComponent;
 }
 
-export const Button = ({ label, onClickHandler, Icon }: Props) => {
+export const Button = ({
+  label,
+  onClickHandler,
+  IconLeft,
+  IconRight,
+}: Props) => {
   return (
     <button type="button" onClick={onClickHandler}>
+      {IconLeft && <IconLeft />}
       <span>{label}</span>
-      {Icon && <Icon />}
+      {IconRight && <IconRight />}
     </button>
   );
 };

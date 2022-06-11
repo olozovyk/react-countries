@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@emotion/react';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from 'redux/store';
 
 import { store } from 'redux/store';
 import App from 'App';
-import { light } from './theme';
 
 import '../node_modules/modern-normalize/modern-normalize.css';
 import 'index.css';
@@ -19,9 +19,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <ThemeProvider theme={light}>
+        <PersistGate persistor={persistor}>
           <App />
-        </ThemeProvider>
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

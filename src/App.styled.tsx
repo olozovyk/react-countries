@@ -1,12 +1,8 @@
 import styled from '@emotion/styled';
 
 export const TestDiv = styled.div`
-  color: ${({ theme: { palette } }) => palette.elementsColor};
-  background-color: green;
-
-  @media (min-width: ${({ theme: { breakpoints } }) => breakpoints.desktop}) {
-    background-color: ${({ theme: { palette } }) => palette.backgroundColor};
-  }
+  color: ${({ theme }) => theme.palette.elementsColor};
+  background-color: ${({ theme }) => theme.palette.backgroundColor};
 `;
 
 // export const CustomButton = styledMui(Button)(

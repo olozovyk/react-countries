@@ -15,7 +15,9 @@ export const ButtonToggleTheme = () => {
     <Button
       label={useSelector(themeValue) === 'light' ? 'Dark Mode' : 'Light Mode'}
       onClickHandler={onClickToggleHandler}
-      Icon={useSelector(themeValue) === 'light' ? DarkModeIcon : LightModeIcon}
+      IconRight={
+        useSelector(themeValue) === 'light' ? DarkModeIcon : LightModeIcon
+      }
     />
   );
 };

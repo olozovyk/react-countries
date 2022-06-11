@@ -1,5 +1,6 @@
 import { Button } from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 export const ButtonBack = () => {
   const navigate = useNavigate();
@@ -8,5 +9,11 @@ export const ButtonBack = () => {
     navigate(-1);
   };
 
-  return <Button label="back" onClickHandler={onClickHandler} />;
+  return (
+    <Button
+      label="Back"
+      IconLeft={KeyboardBackspaceIcon}
+      onClickHandler={onClickHandler}
+    />
+  );
 };
