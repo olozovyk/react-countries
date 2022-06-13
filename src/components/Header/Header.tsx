@@ -1,13 +1,22 @@
 import { ButtonToggleTheme } from '../ButtonToggleTheme/ButtonToggleTheme';
 import { Container } from '../Container/Container';
-import { HeaderStyled } from './Header.styled';
+import {
+  HeaderContent,
+  HeaderStyled,
+  HeaderTitle,
+  HeaderTitleLink,
+} from './Header.styled';
 
 export const Header = () => {
   return (
     <HeaderStyled>
       <Container>
-        <h1>Where in the world?</h1>
-        <ButtonToggleTheme />
+        <HeaderContent>
+          <HeaderTitleLink to="/">
+            <HeaderTitle>Where in the world?</HeaderTitle>
+          </HeaderTitleLink>
+          <ButtonToggleTheme />
+        </HeaderContent>
       </Container>
     </HeaderStyled>
   );

@@ -1,24 +1,18 @@
 import React from 'react';
 import { SvgIconComponent } from '@mui/icons-material';
+import { ButtonStyled } from './Button.styled';
 
 interface Props {
   label: string;
   onClickHandler(): void;
-  IconLeft?: SvgIconComponent;
-  IconRight?: SvgIconComponent;
+  Icon?: SvgIconComponent;
 }
 
-export const Button = ({
-  label,
-  onClickHandler,
-  IconLeft,
-  IconRight,
-}: Props) => {
+export const Button = ({ label, onClickHandler, Icon }: Props) => {
   return (
-    <button type="button" onClick={onClickHandler}>
-      {IconLeft && <IconLeft />}
+    <ButtonStyled type="button" onClick={onClickHandler}>
+      {Icon && <Icon />}
       <span>{label}</span>
-      {IconRight && <IconRight />}
-    </button>
+    </ButtonStyled>
   );
 };

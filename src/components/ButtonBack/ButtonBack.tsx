@@ -12,7 +12,7 @@ export const ButtonBack = () => {
   return (
     <Button
       label="Back"
-      IconLeft={KeyboardBackspaceIcon}
+      Icon={KeyboardBackspaceIcon}
       onClickHandler={onClickHandler}
     />
   );
