@@ -5,7 +5,6 @@ export const ContainerStyled = styled.div`
   min-width: ${({ theme }) => theme.breakpoints.mobile};
   max-width: 100%;
   padding: 0 32px;
-  border: 2px dotted tomato;
 
   // @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
   // }

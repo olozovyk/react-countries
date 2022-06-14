@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const HeaderStyled = styled.header`
   padding: 50px 0;
   background-color: ${({ theme }) => theme.palette.elementsColor};
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: ${({ theme }) => theme.palette.boxShadow};
 `;
 
 export const HeaderContent = styled.div`

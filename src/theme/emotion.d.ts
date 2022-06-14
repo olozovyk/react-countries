@@ -7,6 +7,8 @@ declare module '@emotion/react' {
       textColor: string;
       inputColor: string;
       elementsColor: string;
+      activeColor: string;
+      boxShadow: string;
     };
 
     breakpoints: {

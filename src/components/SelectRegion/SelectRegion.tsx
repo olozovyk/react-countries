@@ -5,6 +5,7 @@ import Select from '@mui/material/Menu';
 import Option from '@mui/material/MenuItem';
 import regions from 'regions.json';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { SelectRegionWrapper } from './SelectRegion.styled';
 
 export const SelectRegion = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -59,7 +60,7 @@ export const SelectRegion = () => {
   };
 
   return (
-    <>
+    <SelectRegionWrapper>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -68,7 +69,7 @@ export const SelectRegion = () => {
         variant="contained"
         endIcon={<KeyboardArrowDownIcon />}
         onClick={handleSelectClick}
-        sx={{ textTransform: 'none' }}
+        sx={{ textTransform: 'none', backgroundColor: 'orange', width: '100%' }}
       >
         {selectRegion}
       </Button>
@@ -96,6 +97,6 @@ export const SelectRegion = () => {
           Show all countries
         </Button>
       )}
-    </>
+    </SelectRegionWrapper>
   );
 };
