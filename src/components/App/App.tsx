@@ -1,22 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { Layout } from 'components/Layout/Layout';
 import { Main } from 'pages/Main';
 import { Detail } from 'pages/Detail';
-import { light, dark } from 'theme';
-import { themeValue } from 'redux/theme/themeSelectors';
-import { Theme, ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@emotion/react';
+import { useSelectTheme } from 'hooks/useSelectTheme';
 import { AppStyled } from './App.styled';
 
 const App = () => {
-  const currentTheme = useSelector(themeValue);
-
-  const getTheme = (): Theme => {
-    return currentTheme === 'light' ? light : dark;
-  };
+  const theme = useSelectTheme();
 
   return (
-    <ThemeProvider theme={getTheme()}>
+    <ThemeProvider theme={theme}>
       <AppStyled>
         <Routes>
           <Route path="/" element={<Layout />}>

@@ -1,15 +1,21 @@
 import { useState, MouseEvent, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import Select from '@mui/material/Menu';
-import Option from '@mui/material/MenuItem';
 import regions from 'regions.json';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { SelectRegionWrapper } from './SelectRegion.styled';
+import { ThemeProvider } from '@mui/material';
+import { useSelectMuiTheme } from 'hooks/useSelectMuiTheme';
+
+import {
+  ButtonResetRegionStyled,
+  ButtonSelectStyled,
+  OptionStyled,
+  SelectStyled,
+} from './SelectRegion.styled';
 
 export const SelectRegion = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectRegion, setSelectRegion] = useState<string>('Filter by Region');
+  const [selectedRegion, setSelectedRegion] =
+    useState<string>('Filter by Region');
   const [showReset, setShowReset] = useState<boolean>(false);
   const open = Boolean(anchorEl);
 
@@ -29,7 +35,7 @@ export const SelectRegion = () => {
       return;
     }
 
-    setSelectRegion(regionCapitalize);
+    setSelectedRegion(regionCapitalize);
     setShowReset(true);
   }, [navigate, params.region]);
 
@@ -46,7 +52,7 @@ export const SelectRegion = () => {
 
     if (event.currentTarget.textContent) {
       const region = event.currentTarget.textContent;
-      setSelectRegion(region);
+      setSelectedRegion(region);
       setShowReset(true);
       const path = `/regions/${region.toLowerCase()}`;
       navigate(path);
@@ -55,48 +61,53 @@ export const SelectRegion = () => {
 
   const handleReset = () => {
     setShowReset(false);
-    setSelectRegion('Filter by Region');
+    setSelectedRegion('Filter by Region');
     navigate('/');
   };
 
+  const theme = useSelectMuiTheme();
+
   return (
-    <SelectRegionWrapper>
-      <Button
+    <ThemeProvider theme={theme}>
+      <ButtonSelectStyled
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="contained"
+        disableFocusRipple={true}
+        disableRipple={true}
         endIcon={<KeyboardArrowDownIcon />}
         onClick={handleSelectClick}
-        sx={{ textTransform: 'none', backgroundColor: 'orange', width: '100%' }}
       >
-        {selectRegion}
-      </Button>
+        {selectedRegion}
+      </ButtonSelectStyled>
       {/*Original component name is Menu from Material UI, renamed by me to SelectRegion*/}
-      <Select
+      <SelectStyled
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        autoFocus={false}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
       >
         {regions.map(region => (
-          <Option key={region} onClick={handleOptionClick}>
+          <OptionStyled key={region} onClick={handleOptionClick}>
             {region}
-          </Option>
+          </OptionStyled>
         ))}
-      </Select>
+      </SelectStyled>
       {showReset && (
-        <Button
+        <ButtonResetRegionStyled
+          disableFocusRipple={true}
+          disableRipple={true}
           onClick={handleReset}
-          sx={{ textTransform: 'none', textDecoration: 'underline' }}
         >
           Show all countries
-        </Button>
+        </ButtonResetRegionStyled>
       )}
-    </SelectRegionWrapper>
+    </ThemeProvider>
   );
 };

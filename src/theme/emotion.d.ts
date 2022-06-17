@@ -18,3 +18,43 @@ declare module '@emotion/react' {
     };
   }
 }
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    emotion: {
+      palette: {
+        backgroundColor: string;
+        textColor: string;
+        inputColor: string;
+        elementsColor: string;
+        activeColor: string;
+        boxShadow: string;
+      };
+
+      breakpoints: {
+        mobile: string;
+        tablet: string;
+        desktop: string;
+      };
+    };
+  }
+
+  interface ThemeOptions {
+    emotion?: {
+      palette?: {
+        backgroundColor: string;
+        textColor: string;
+        inputColor: string;
+        elementsColor: string;
+        activeColor: string;
+        boxShadow: string;
+      };
+
+      breakpoints?: {
+        mobile: string;
+        tablet: string;
+        desktop: string;
+      };
+    };
+  }
+}

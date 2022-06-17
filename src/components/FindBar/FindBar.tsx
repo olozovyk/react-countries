@@ -1,7 +1,7 @@
 import React from 'react';
-import { ThemeProvider } from '@mui/material';
+
 import { SelectRegion } from '../SelectRegion/SelectRegion';
-import { themeMui } from '../../theme';
+
 import { Container } from '../Container/Container';
 import { SearchCountry } from '../SearchCountry/SearchCountry';
 import { FindBarStyled } from './FindBar.styled';
@@ -15,9 +15,7 @@ export const FindBar: React.FC<IProps> = ({ searchChangeHandler }) => {
     <FindBarStyled>
       <Container>
         <SearchCountry searchChangeHandler={searchChangeHandler} />
-        <ThemeProvider theme={themeMui}>
-          <SelectRegion />
-        </ThemeProvider>
+        <SelectRegion />
       </Container>
     </FindBarStyled>
   );

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 export const HeaderStyled = styled.header`
-  padding: 50px 0;
+  padding: 30px 0;
   background-color: ${({ theme }) => theme.palette.elementsColor};
   box-shadow: ${({ theme }) => theme.palette.boxShadow};
 `;
