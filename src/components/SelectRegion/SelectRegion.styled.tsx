@@ -3,6 +3,12 @@ import Button from '@mui/material/Button';
 import Select from '@mui/material/Menu';
 import Option from '@mui/material/MenuItem';
 
+export const WrapperSelectStyled = styled(Button)(
+  ({ theme }) => `
+  // 
+  `,
+);
+
 export const ButtonSelectStyled = styled(Button)(
   ({ theme }) => `
   justify-content: space-between;

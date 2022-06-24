@@ -9,7 +9,20 @@ export const CountriesListStyled = styled.ul`
   display: grid;
   gap: 30px;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, 320px);
+  grid-template-columns: minmax(320px, 460px);
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.small}) {
+    justify-content: space-between;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    justify-content: space-between;
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 export const CountriesItemStyled = styled.li`
@@ -21,9 +34,22 @@ export const CountriesItemStyled = styled.li`
 
 export const CountriesImageLinkStyled = styled(Link)`
   display: block;
-  width: 320px;
-  height: 195px;
+  width: 100%;
+  height: 50vw;
   overflow: hidden;
+
+  @media screen and (min-width: 550px) {
+    height: 270px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: 26vw;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.small}) {
+    height: 16vw;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    height: 180px;
+  }
 `;
 
 export const CountriesImageStyled = styled.img`
@@ -35,7 +61,7 @@ export const CountriesContentStyled = styled.div`
 `;
 
 export const CountryNameStyled = styled.h2`
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 
   & a {
     font-size: 18px;

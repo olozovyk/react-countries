@@ -19,6 +19,7 @@ const darkPalette = {
 const breakpoints = {
   mobile: '375px',
   tablet: '768px',
+  small: '1024px',
   desktop: '1440px',
 };
 
