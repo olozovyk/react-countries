@@ -1,12 +1,15 @@
-import { styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Menu';
 import Option from '@mui/material/MenuItem';
 
-export const WrapperSelectStyled = styled(Button)(
+export const BoxStyled = styled(Box)(
   ({ theme }) => `
-  // 
-  `,
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 95px;
+`,
 );
 
 export const ButtonSelectStyled = styled(Button)(
@@ -69,6 +72,7 @@ export const ButtonResetRegionStyled = styled(Button)(
     color: inherit;
     text-transform: none;
     text-decoration: underline;
+    width: max-content;
 
     &:hover {
       text-decoration: underline;

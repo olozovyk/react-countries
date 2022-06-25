@@ -16,6 +16,10 @@ export const InputWrapper = styled.div`
   &:focus-within {
     box-shadow: 0 0 0 2px ${({ theme }) => theme.palette.activeColor};
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.small}) {
+    width: 480px;
+  }
 `;
 
 export const InputStyled = styled.input`

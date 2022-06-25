@@ -6,6 +6,7 @@ import { ThemeProvider } from '@mui/material';
 import { useSelectMuiTheme } from 'hooks/useSelectMuiTheme';
 
 import {
+  BoxStyled,
   ButtonResetRegionStyled,
   ButtonSelectStyled,
   OptionStyled,
@@ -69,45 +70,47 @@ export const SelectRegion = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ButtonSelectStyled
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="contained"
-        disableFocusRipple={true}
-        disableRipple={true}
-        endIcon={<KeyboardArrowDownIcon />}
-        onClick={handleSelectClick}
-      >
-        {selectedRegion}
-      </ButtonSelectStyled>
-      {/*Original component name is Menu from Material UI, renamed by me to SelectRegion*/}
-      <SelectStyled
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        autoFocus={false}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        {regions.map(region => (
-          <OptionStyled key={region} onClick={handleOptionClick}>
-            {region}
-          </OptionStyled>
-        ))}
-      </SelectStyled>
-      {showReset && (
-        <ButtonResetRegionStyled
+      <BoxStyled>
+        <ButtonSelectStyled
+          id="basic-button"
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          variant="contained"
           disableFocusRipple={true}
           disableRipple={true}
-          onClick={handleReset}
+          endIcon={<KeyboardArrowDownIcon />}
+          onClick={handleSelectClick}
         >
-          Show all countries
-        </ButtonResetRegionStyled>
-      )}
+          {selectedRegion}
+        </ButtonSelectStyled>
+        {/*Original component name is Menu from Material UI, renamed by me to SelectRegion*/}
+        <SelectStyled
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          autoFocus={false}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+          {regions.map(region => (
+            <OptionStyled key={region} onClick={handleOptionClick}>
+              {region}
+            </OptionStyled>
+          ))}
+        </SelectStyled>
+        {showReset && (
+          <ButtonResetRegionStyled
+            disableFocusRipple={true}
+            disableRipple={true}
+            onClick={handleReset}
+          >
+            Show all countries
+          </ButtonResetRegionStyled>
+        )}
+      </BoxStyled>
     </ThemeProvider>
   );
 };

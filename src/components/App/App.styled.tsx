@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const AppStyled = styled.div`
+  min-height: 100vh;
   color: ${({ theme }) => theme.palette.textColor};
   background-color: ${({ theme }) => theme.palette.backgroundColor};
   font-family: 'Nunito Sans', sans-serif;

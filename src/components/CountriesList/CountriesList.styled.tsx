@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 export const CountriesSectionStyled = styled.section`
-  padding: 15px 0 15px;
+  padding: 10px 0 15px;
 `;
 
 export const CountriesListStyled = styled.ul`
