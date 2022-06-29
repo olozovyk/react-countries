@@ -1,8 +1,6 @@
-import { ReactElement } from 'react';
+import { PropsWithChildren } from 'react';
 import { ContainerStyled } from './Container.styled';
 
-export const Container = ({
-  children,
-}: {
-  children: ReactElement | ReactElement[];
-}) => <ContainerStyled>{children}</ContainerStyled>;
+export const Container = ({ children }: PropsWithChildren) => (
+  <ContainerStyled>{children}</ContainerStyled>
+);

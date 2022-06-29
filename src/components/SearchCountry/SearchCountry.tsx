@@ -3,7 +3,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { InputStyled, InputWrapper } from './SearchCountry.styled';
 
 interface IProps {
-  searchChangeHandler(e: React.ChangeEvent): void;
+  searchChangeHandler(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export const SearchCountry = ({ searchChangeHandler }: IProps) => {

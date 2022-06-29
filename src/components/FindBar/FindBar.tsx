@@ -7,7 +7,7 @@ import { SearchCountry } from '../SearchCountry/SearchCountry';
 import { FindBarStyled, FindBarWrapper } from './FindBar.styled';
 
 interface IProps {
-  searchChangeHandler(e: React.ChangeEvent): void;
+  searchChangeHandler(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export const FindBar: React.FC<IProps> = ({ searchChangeHandler }) => {
