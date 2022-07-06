@@ -2,7 +2,18 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetCountryByNameQuery } from 'redux/countriesAPI/countriesAPI';
 import { BorderCountries } from 'components/BorderCountries/BorderCountries';
-import { populationNormalize } from '../../helpers/populationNormalize';
+import { populationNormalize } from 'helpers/populationNormalize';
+import { Container } from 'components/Container/Container';
+import {
+  AddInfoStyled,
+  BasicInfoStyled,
+  CountryDetailStyled,
+  ImageStyled,
+  ImageWrapper,
+  InfoRowStyled,
+  InfoTypeStyled,
+  TitleStyled,
+} from './CountryDetail.styled';
 
 interface ICountryDetail {
   name: string;
@@ -107,49 +118,60 @@ export const CountryDetail = () => {
   }, [data]);
 
   return (
-    <>
-      {country && (
-        <div>
-          <img src={country.flag} alt={country.name} />
-          <h2>{country.name}</h2>
-          <p>
-            <span>Native Name: </span>
-            <span>{country.nativeName}</span>
-          </p>
-          <p>
-            <span>Population: </span>
-            <span>{country.population}</span>
-          </p>
-          <p>
-            <span>Region: </span>
-            <span>{country.region}</span>
-          </p>
-          <p>
-            <span>Sub Region: </span>
-            <span>{country.subregion}</span>
-          </p>
-          <p>
-            <span>Capital: </span>
-            <span>{country.capital}</span>
-          </p>
-          <p>
-            <span>Top Level Domain: </span>
-            <span>{country.domain}</span>
-          </p>
-          <p>
-            <span>Currencies: </span>
-            <span>{country.currencies}</span>
-          </p>
-          <p>
-            <span>Languages: </span>
-            <span>{country.languages}</span>
-          </p>
+    <CountryDetailStyled>
+      <Container>
+        {country && (
           <div>
-            <span>Border Countries:</span>
-            <BorderCountries borders={country.borders} />
+            <ImageWrapper>
+              <ImageStyled src={country.flag} alt={country.name} />
+            </ImageWrapper>
+
+            <BasicInfoStyled>
+              <TitleStyled>{country.name}</TitleStyled>
+              <InfoRowStyled>
+                <InfoTypeStyled>Native Name: </InfoTypeStyled>
+                <span>{country.nativeName}</span>
+              </InfoRowStyled>
+              <InfoRowStyled>
+                <InfoTypeStyled>Population: </InfoTypeStyled>
+                <span>{country.population}</span>
+              </InfoRowStyled>
+              <InfoRowStyled>
+                <InfoTypeStyled>Region: </InfoTypeStyled>
+                <span>{country.region}</span>
+              </InfoRowStyled>
+              <InfoRowStyled>
+                <InfoTypeStyled>Sub Region: </InfoTypeStyled>
+                <span>{country.subregion}</span>
+              </InfoRowStyled>
+              <InfoRowStyled>
+                <InfoTypeStyled>Capital: </InfoTypeStyled>
+                <span>{country.capital}</span>
+              </InfoRowStyled>
+            </BasicInfoStyled>
+
+            <AddInfoStyled>
+              <InfoRowStyled>
+                <InfoTypeStyled>Top Level Domain: </InfoTypeStyled>
+                <span>{country.domain}</span>
+              </InfoRowStyled>
+              <InfoRowStyled>
+                <InfoTypeStyled>Currencies: </InfoTypeStyled>
+                <span>{country.currencies}</span>
+              </InfoRowStyled>
+              <InfoRowStyled>
+                <InfoTypeStyled>Languages: </InfoTypeStyled>
+                <span>{country.languages}</span>
+              </InfoRowStyled>
+            </AddInfoStyled>
+
+            <div>
+              <span>Border Countries: </span>
+              <BorderCountries borders={country.borders} />
+            </div>
           </div>
-        </div>
-      )}
-    </>
+        )}
+      </Container>
+    </CountryDetailStyled>
   );
 };
