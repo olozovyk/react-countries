@@ -1,6 +1,8 @@
+import { Button } from 'components/Button/Button';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetCountriesByCodesQuery } from '../../redux/countriesAPI/countriesAPI';
+import { BorderButtonsWrapperStyled } from './BorderCountries.styled';
 
 export const BorderCountries = ({ borders = [] }: { borders: string[] }) => {
   const [counties, setCountries] = useState<string[]>([]);
@@ -37,14 +39,16 @@ export const BorderCountries = ({ borders = [] }: { borders: string[] }) => {
   };
 
   return (
-    <>
+    <BorderButtonsWrapperStyled>
       {counties.length
         ? counties.map(country => (
-            <button key={country} type="button" onClick={onButtonClick}>
-              {country}
-            </button>
+            <Button
+              key={country}
+              onClickHandler={onButtonClick}
+              label={country}
+            />
           ))
         : '-'}
-    </>
+    </BorderButtonsWrapperStyled>
   );
 };

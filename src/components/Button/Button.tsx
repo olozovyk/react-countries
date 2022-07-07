@@ -4,7 +4,7 @@ import { ButtonStyled } from './Button.styled';
 
 interface Props {
   label: string;
-  onClickHandler(): void;
+  onClickHandler(e: React.MouseEvent<HTMLButtonElement>): void;
   Icon?: SvgIconComponent;
 }
 

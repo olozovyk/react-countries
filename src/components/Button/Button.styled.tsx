@@ -5,9 +5,8 @@ export const ButtonStyled = styled.button`
   justify-content: center;
   align-items: center;
   gap: 0 10px;
-  padding: 4px 24px;
+  padding: 6px 24px;
 
-  font-size: 18px;
   color: ${({ theme }) => theme.palette.textColor};
 
   background-color: ${({ theme }) => theme.palette.elementsColor};

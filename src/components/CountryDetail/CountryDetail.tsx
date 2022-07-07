@@ -7,6 +7,7 @@ import { Container } from 'components/Container/Container';
 import {
   AddInfoStyled,
   BasicInfoStyled,
+  BorderTitle,
   CountryDetailStyled,
   ImageStyled,
   ImageWrapper,
@@ -166,7 +167,7 @@ export const CountryDetail = () => {
             </AddInfoStyled>
 
             <div>
-              <span>Border Countries: </span>
+              <BorderTitle>Border Countries: </BorderTitle>
               <BorderCountries borders={country.borders} />
             </div>
           </div>

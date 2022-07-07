@@ -25,9 +25,15 @@ export const InfoRowStyled = styled.p`
 `;
 
 export const InfoTypeStyled = styled.span`
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 export const AddInfoStyled = styled.div`
   margin-bottom: 30px;
+`;
+
+export const BorderTitle = styled.h3`
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
 `;
