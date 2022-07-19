@@ -6,10 +6,26 @@ export const CountryDetailStyled = styled.div`
 
 export const ImageWrapper = styled.div`
   margin-bottom: 30px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    width: 440px;
+    flex-shrink: 0;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 440px;
+  }
 `;
 
 export const ImageStyled = styled.img`
   height: auto;
+`;
+
+export const DetailWrapperStyled = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    display: flex;
+    gap: 0 50px;
+  }
 `;
 
 export const BasicInfoStyled = styled.div`

@@ -9,6 +9,7 @@ import {
   BasicInfoStyled,
   BorderTitle,
   CountryDetailStyled,
+  DetailWrapperStyled,
   ImageStyled,
   ImageWrapper,
   InfoRowStyled,
@@ -122,55 +123,57 @@ export const CountryDetail = () => {
     <CountryDetailStyled>
       <Container>
         {country && (
-          <div>
+          <DetailWrapperStyled>
             <ImageWrapper>
               <ImageStyled src={country.flag} alt={country.name} />
             </ImageWrapper>
 
-            <BasicInfoStyled>
-              <TitleStyled>{country.name}</TitleStyled>
-              <InfoRowStyled>
-                <InfoTypeStyled>Native Name: </InfoTypeStyled>
-                <span>{country.nativeName}</span>
-              </InfoRowStyled>
-              <InfoRowStyled>
-                <InfoTypeStyled>Population: </InfoTypeStyled>
-                <span>{country.population}</span>
-              </InfoRowStyled>
-              <InfoRowStyled>
-                <InfoTypeStyled>Region: </InfoTypeStyled>
-                <span>{country.region}</span>
-              </InfoRowStyled>
-              <InfoRowStyled>
-                <InfoTypeStyled>Sub Region: </InfoTypeStyled>
-                <span>{country.subregion}</span>
-              </InfoRowStyled>
-              <InfoRowStyled>
-                <InfoTypeStyled>Capital: </InfoTypeStyled>
-                <span>{country.capital}</span>
-              </InfoRowStyled>
-            </BasicInfoStyled>
-
-            <AddInfoStyled>
-              <InfoRowStyled>
-                <InfoTypeStyled>Top Level Domain: </InfoTypeStyled>
-                <span>{country.domain}</span>
-              </InfoRowStyled>
-              <InfoRowStyled>
-                <InfoTypeStyled>Currencies: </InfoTypeStyled>
-                <span>{country.currencies}</span>
-              </InfoRowStyled>
-              <InfoRowStyled>
-                <InfoTypeStyled>Languages: </InfoTypeStyled>
-                <span>{country.languages}</span>
-              </InfoRowStyled>
-            </AddInfoStyled>
-
             <div>
-              <BorderTitle>Border Countries: </BorderTitle>
-              <BorderCountries borders={country.borders} />
+              <BasicInfoStyled>
+                <TitleStyled>{country.name}</TitleStyled>
+                <InfoRowStyled>
+                  <InfoTypeStyled>Native Name: </InfoTypeStyled>
+                  <span>{country.nativeName}</span>
+                </InfoRowStyled>
+                <InfoRowStyled>
+                  <InfoTypeStyled>Population: </InfoTypeStyled>
+                  <span>{country.population}</span>
+                </InfoRowStyled>
+                <InfoRowStyled>
+                  <InfoTypeStyled>Region: </InfoTypeStyled>
+                  <span>{country.region}</span>
+                </InfoRowStyled>
+                <InfoRowStyled>
+                  <InfoTypeStyled>Sub Region: </InfoTypeStyled>
+                  <span>{country.subregion}</span>
+                </InfoRowStyled>
+                <InfoRowStyled>
+                  <InfoTypeStyled>Capital: </InfoTypeStyled>
+                  <span>{country.capital}</span>
+                </InfoRowStyled>
+              </BasicInfoStyled>
+
+              <AddInfoStyled>
+                <InfoRowStyled>
+                  <InfoTypeStyled>Top Level Domain: </InfoTypeStyled>
+                  <span>{country.domain}</span>
+                </InfoRowStyled>
+                <InfoRowStyled>
+                  <InfoTypeStyled>Currencies: </InfoTypeStyled>
+                  <span>{country.currencies}</span>
+                </InfoRowStyled>
+                <InfoRowStyled>
+                  <InfoTypeStyled>Languages: </InfoTypeStyled>
+                  <span>{country.languages}</span>
+                </InfoRowStyled>
+              </AddInfoStyled>
+
+              <div>
+                <BorderTitle>Border Countries: </BorderTitle>
+                <BorderCountries borders={country.borders} />
+              </div>
             </div>
-          </div>
+          </DetailWrapperStyled>
         )}
       </Container>
     </CountryDetailStyled>
