@@ -1,4 +1,4 @@
-import { Button } from 'components/Button/Button';
+import { Button } from '../Button/Button';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetCountriesByCodesQuery } from '../../redux/countriesAPI/countriesAPI';

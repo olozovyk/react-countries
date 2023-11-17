@@ -1,4 +1,4 @@
-import { Container } from 'components/Container/Container';
+import { Container } from '../Container/Container';
 import React, { RefObject } from 'react';
 import { Link } from 'react-router-dom';
 import { populationNormalize } from '../../helpers/populationNormalize';
@@ -13,6 +13,7 @@ import {
   CountryCategoryNamesStyled,
   CountryInfoRowStyle,
 } from './CountriesList.styled';
+import { ICountry } from '../../types/country.interface.ts';
 
 interface IProps {
   data: ICountry[];

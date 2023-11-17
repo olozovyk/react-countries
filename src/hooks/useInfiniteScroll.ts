@@ -1,4 +1,5 @@
 import { RefObject, useEffect, useState } from 'react';
+import { ICountry } from '../types/country.interface.ts';
 
 export const useInfiniteScroll = (
   data: ICountry[] | undefined,

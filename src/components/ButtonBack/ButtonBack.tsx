@@ -1,7 +1,7 @@
-import { Button } from 'components/Button/Button';
+import { Button } from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { Container } from 'components/Container/Container';
+import { Container } from '../Container/Container';
 import { ButtonBackWrapperStyled } from './ButtonBack.styled';
 
 export const ButtonBack = () => {

@@ -1,5 +1,5 @@
-import { CountryDetail } from 'components/CountryDetail/CountryDetail';
-import { ButtonBack } from 'components/ButtonBack/ButtonBack';
+import { CountryDetail } from '../components/CountryDetail/CountryDetail';
+import { ButtonBack } from '../components/ButtonBack/ButtonBack';
 
 export const Detail = () => {
   return (

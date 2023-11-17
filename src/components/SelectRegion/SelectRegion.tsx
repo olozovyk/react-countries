@@ -1,9 +1,9 @@
 import { useState, MouseEvent, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import regions from 'regions.json';
+import regions from '../../assets/regions.json';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { ThemeProvider } from '@mui/material';
-import { useSelectMuiTheme } from 'hooks/useSelectMuiTheme';
+import { useSelectMuiTheme } from '../../hooks/useSelectMuiTheme';
 
 import {
   BoxStyled,

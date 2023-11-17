@@ -1,13 +1,14 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { FindBar } from 'components/FindBar/FindBar';
-import { CountriesList } from 'components/CountriesList/CountriesList';
+import { FindBar } from '../components/FindBar/FindBar';
+import { CountriesList } from '../components/CountriesList/CountriesList';
 import {
   useGetAllCountriesQuery,
   useGetCountriesByRegionQuery,
-} from 'redux/countriesAPI/countriesAPI';
-import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
+} from '../redux/countriesAPI/countriesAPI';
+import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 import debounce from 'lodash.debounce';
+import { ICountry } from '../types/country.interface.ts';
 
 export const Main = () => {
   const [countries, setCountries] = useState<ICountry[]>([]);

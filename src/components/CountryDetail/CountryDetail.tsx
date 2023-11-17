@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetCountryByNameQuery } from 'redux/countriesAPI/countriesAPI';
-import { BorderCountries } from 'components/BorderCountries/BorderCountries';
-import { populationNormalize } from 'helpers/populationNormalize';
-import { Container } from 'components/Container/Container';
+import { useGetCountryByNameQuery } from '../../redux/countriesAPI/countriesAPI';
+import { BorderCountries } from '../BorderCountries/BorderCountries';
+import { populationNormalize } from '../../helpers/populationNormalize';
+import { Container } from '../Container/Container';
 import {
   AddInfoStyled,
   BasicInfoStyled,

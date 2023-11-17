@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from 'components/Layout/Layout';
-import { Main } from 'pages/Main';
-import { Detail } from 'pages/Detail';
+import { Layout } from '../Layout/Layout';
+import { Main } from '../../pages/Main';
+import { Detail } from '../../pages/Detail';
 import { ThemeProvider } from '@emotion/react';
-import { useSelectTheme } from 'hooks/useSelectTheme';
+import { useSelectTheme } from '../../hooks/useSelectTheme';
 import { AppStyled } from './App.styled';
 
 const App = () => {

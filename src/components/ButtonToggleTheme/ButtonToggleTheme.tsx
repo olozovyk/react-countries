@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTheme } from 'redux/theme/themeSlice';
-import { themeValue } from 'redux/theme/themeSelectors';
+import { toggleTheme } from '../../redux/theme/themeSlice';
+import { themeValue } from '../../redux/theme/themeSelectors';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { ButtonToggleThemeStyled } from './ButtonToggleTheme.styled';
