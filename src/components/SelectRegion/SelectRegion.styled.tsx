@@ -4,7 +4,7 @@ import Select from '@mui/material/Menu';
 import Option from '@mui/material/MenuItem';
 
 export const BoxStyled = styled(Box)(
-  ({ theme }) => `
+  () => `
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
