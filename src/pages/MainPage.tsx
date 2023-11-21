@@ -6,13 +6,16 @@ import {
   useGetAllCountriesQuery,
   useGetCountriesByRegionQuery,
 } from '../redux/countriesAPI/countriesAPI';
-import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 import debounce from 'lodash.debounce';
 import { ICountry } from '../types/country.interface.ts';
 
-export const Main = () => {
+export const MainPage = () => {
+  const LIMIT_INIT = 6;
+
   const [countries, setCountries] = useState<ICountry[]>([]);
+  const [limit, setLimit] = useState(LIMIT_INIT);
   const [region, setRegion] = useState<string>('');
+
   const [skip, setSkip] = useState<boolean>(true);
   const [query, setQuery] = useState<string>('');
 
@@ -24,8 +27,6 @@ export const Main = () => {
   } = useGetCountriesByRegionQuery(region, {
     skip,
   });
-
-  const refLiElement = useRef<HTMLLIElement>(null);
 
   const params = useParams();
 
@@ -46,6 +47,10 @@ export const Main = () => {
     }
   }, [allCountries, countriesByRegion, isLoading, isSuccess, params.region]);
 
+  useEffect(() => {
+    setLimit(LIMIT_INIT);
+  }, [params.region]);
+
   const searchChangeHandler = debounce(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setQuery(e.target.value.trim().toLowerCase());
@@ -65,8 +70,28 @@ export const Main = () => {
     });
   }, [countries, query]);
 
-  const countriesToShow =
-    useInfiniteScroll(searchedCountries, 12, refLiElement) || [];
+  const countriesToShow = searchedCountries.slice(0, limit);
+
+  const refLiElement = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry], observer) => {
+      if (!refLiElement.current || !entry.isIntersecting) return;
+
+      setLimit(prev => prev + LIMIT_INIT);
+      observer.unobserve(refLiElement.current);
+    }, {});
+
+    if (refLiElement.current) {
+      observer.observe(refLiElement.current);
+    }
+
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, [countriesToShow]);
 
   return (
     <main>

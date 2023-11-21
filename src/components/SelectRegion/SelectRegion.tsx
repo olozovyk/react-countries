@@ -26,6 +26,7 @@ export const SelectRegion = () => {
   useEffect(() => {
     const region = params.region;
     if (!region) {
+      setSelectedRegion('Filter by Region');
       return;
     }
 
