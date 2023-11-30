@@ -41,6 +41,7 @@ export const CountryDetail = () => {
   // Navigate to 404 if country is not found
   useEffect(() => {
     if (isError) {
+      // TODO refactor - remain the original path, but render 404
       navigate('/404');
     }
   }, [isError, navigate]);
