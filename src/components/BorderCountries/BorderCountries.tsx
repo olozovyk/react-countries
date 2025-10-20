@@ -1,35 +1,22 @@
 import { Button } from '../Button/Button';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetCountriesByCodesQuery } from '../../redux/countriesAPI/countriesAPI';
 import { BorderButtonsWrapperStyled } from './BorderCountries.styled';
 
 export const BorderCountries = ({ borders = [] }: { borders: string[] }) => {
-  const [counties, setCountries] = useState<string[]>([]);
-  const [skipLoad, setSkipLoad] = useState<boolean>(true);
-
   const navigate = useNavigate();
 
   const { data } = useGetCountriesByCodesQuery(borders.join(','), {
-    skip: skipLoad,
+    skip: borders.length === 0,
   });
 
-  useEffect(() => {
-    if (borders.length > 0) {
-      setSkipLoad(false);
-    }
-  }, [borders]);
-
-  useEffect(() => {
-    if (!data) {
-      return;
-    }
-    const countriesArr: string[] = [];
+  const countries: string[] = [];
+  if (data) {
     data.forEach(country => {
-      countriesArr.push(country.name.common);
+      countries.push(country.name.common);
     });
-    setCountries(countriesArr);
-  }, [data]);
+  }
 
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!e.currentTarget.textContent) {
@@ -40,8 +27,8 @@ export const BorderCountries = ({ borders = [] }: { borders: string[] }) => {
 
   return (
     <BorderButtonsWrapperStyled>
-      {counties.length
-        ? counties.map(country => (
+      {countries.length
+        ? countries.map(country => (
             <Button
               key={country}
               onClickHandler={onButtonClick}

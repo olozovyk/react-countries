@@ -1,4 +1,4 @@
-import { useState, MouseEvent, useEffect } from 'react';
+import { useState, MouseEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import regions from '../../assets/regions.json';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -15,31 +15,19 @@ import {
 
 export const SelectRegion = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedRegion, setSelectedRegion] =
-    useState<string>('Filter by Region');
-  const [showReset, setShowReset] = useState<boolean>(false);
   const open = Boolean(anchorEl);
 
   const navigate = useNavigate();
   const params = useParams();
 
-  useEffect(() => {
-    const region = params.region;
-    if (!region) {
-      setSelectedRegion('Filter by Region');
-      return;
-    }
-
-    const regionCapitalize = region.replace(region[0], region[0].toUpperCase());
-
+  const region = params.region;
+  let regionCapitalize;
+  if (region) {
+    regionCapitalize = region.replace(region[0], region[0].toUpperCase());
     if (!regions.includes(regionCapitalize)) {
       navigate('/not-found');
-      return;
     }
-
-    setSelectedRegion(regionCapitalize);
-    setShowReset(true);
-  }, [navigate, params.region]);
+  }
 
   const handleSelectClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -54,16 +42,12 @@ export const SelectRegion = () => {
 
     if (event.currentTarget.textContent) {
       const region = event.currentTarget.textContent;
-      setSelectedRegion(region);
-      setShowReset(true);
       const path = `/regions/${region.toLowerCase()}`;
       navigate(path);
     }
   };
 
   const handleReset = () => {
-    setShowReset(false);
-    setSelectedRegion('Filter by Region');
     navigate('/');
   };
 
@@ -83,7 +67,7 @@ export const SelectRegion = () => {
           endIcon={<KeyboardArrowDownIcon />}
           onClick={handleSelectClick}
         >
-          {selectedRegion}
+          {regionCapitalize ?? 'Filter by Region'}
         </ButtonSelectStyled>
         {/*Original component name is Menu from Material UI, renamed by me to SelectRegion*/}
         <SelectStyled
@@ -102,7 +86,7 @@ export const SelectRegion = () => {
             </OptionStyled>
           ))}
         </SelectStyled>
-        {showReset && (
+        {region && (
           <ButtonResetRegionStyled
             disableFocusRipple={true}
             disableRipple={true}

@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         path: 'countries/:country',
       },
       {
-        element: <div>This is 404 error page</div>,
+        element: <div>This page not found - 404</div>,
         path: '*',
       },
     ],

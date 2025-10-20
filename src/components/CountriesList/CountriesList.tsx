@@ -17,7 +17,7 @@ import { ICountry } from '../../types/country.interface.ts';
 
 interface IProps {
   data: ICountry[];
-  refLiElement: RefObject<HTMLLIElement>;
+  refLiElement: RefObject<HTMLLIElement | null>;
 }
 
 export const CountriesList: React.FC<IProps> = ({

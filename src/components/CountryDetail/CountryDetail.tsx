@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetCountryByNameQuery } from '../../redux/countriesAPI/countriesAPI';
 import { BorderCountries } from '../BorderCountries/BorderCountries';
@@ -34,24 +33,16 @@ interface ICountryDetail {
 export const CountryDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const [country, setCountry] = useState<ICountryDetail>();
 
   const { data, isError } = useGetCountryByNameQuery(params.country || '');
+  const country = {} as ICountryDetail;
 
-  // Navigate to 404 if country is not found
-  useEffect(() => {
-    if (isError) {
-      // TODO refactor - remain the original path, but render 404
-      navigate('/404');
-    }
-  }, [isError, navigate]);
+  if (isError) {
+    navigate('/404');
+    return null;
+  }
 
-  // Formatting country data
-  useEffect(() => {
-    if (!data || !data[0].name.common) {
-      return;
-    }
-
+  if (data && data[0].name.common) {
     const {
       name,
       flags,
@@ -104,21 +95,18 @@ export const CountryDetail = () => {
           .join(', ')
       : '-';
 
-    setCountry(state => ({
-      ...state,
-      flag: flags.png,
-      name: name.common,
-      nativeName: getNativeNames(),
-      population: populationToShow,
-      region: regionToShow,
-      subregion: subregionToShow,
-      capital: capitalToShow,
-      domain: domainToShow,
-      currencies: currenciesToShow,
-      languages: languagesToShow,
-      borders,
-    }));
-  }, [data]);
+    country.flag = flags.png;
+    country.name = name.common;
+    country.nativeName = getNativeNames();
+    country.population = populationToShow;
+    country.region = regionToShow;
+    country.subregion = subregionToShow;
+    country.capital = capitalToShow;
+    country.domain = domainToShow;
+    country.currencies = currenciesToShow;
+    country.languages = languagesToShow;
+    country.borders = borders;
+  }
 
   return (
     <CountryDetailStyled>

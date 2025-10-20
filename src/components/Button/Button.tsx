@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ComponentPropsWithoutRef } from 'react';
 import { SvgIconComponent } from '@mui/icons-material';
 import { ButtonStyled } from './Button.styled';
 
-interface Props {
+interface Props extends ComponentPropsWithoutRef<'button'>{
   label: string;
   onClickHandler(e: React.MouseEvent<HTMLButtonElement>): void;
   Icon?: SvgIconComponent;
